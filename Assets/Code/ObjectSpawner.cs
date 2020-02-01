@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
 
-    public GameObject TestProp;
+    public EcoSystemSO TerrainLayers;
     public AnimationCurve GrowthTimeCurve = new AnimationCurve( new Keyframe(0, 0), new Keyframe(1, 1));
     public AnimationCurve GrowthSizeCurve = new AnimationCurve( new Keyframe(0, 0), new Keyframe(1, 1));
     public float GrowthSpeed = 0.5f;
@@ -26,35 +26,59 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnObjects();
         previousSpawnLocation = transform.position;
     }
 
 
-    void SpawnObjects () 
+    void SpawnObjectsSequence () 
     {
         Debug.Log("Spawn Object");
-
-        if(CanSpawnHere() == false) {
-            return;
-        }
 
         previousSpawnLocation = transform.position;
         spawnLocations.Add(transform.position);
 
-        RaycastHit downHit;
-        
-        if (Physics.Raycast(transform.position, Vector3.down, out downHit, 4f)) {
-            Debug.Log("Hit something down");
-            if (downHit.collider != null){
-                if(TestProp != null) {
-                    GameObject newProp = Instantiate(TestProp, downHit.point, Quaternion.identity);
-                    newProp.transform.localScale = Vector3.zero;
-                    StartCoroutine(ScaleObject(newProp));
-                } 
-            }
+        for (int i = 0; i < 2; i++)
+        {
+            StartCoroutine(SpawnObject(SmallProps[Random.Range(0, SmallProps.Count)]));
+            // StartCoroutine(SpawnObject(MediumProps[Random.Range(0, MediumProps.Count)]));
+            // StartCoroutine(SpawnObject(Trees[Random.Range(0, Trees.Count)]));
         }
 
+    }
+
+    IEnumerator SpawnObject (GameObject objectToSpawn) {
+
+        if (objectToSpawn == null) {
+            Debug.LogError("Prop List was Empty");
+            yield break;
+        }
+
+        yield return new WaitForSeconds(Random.Range(0, 0.2f));
+
+        float spawnFallOff = SpawnDistanceThreshold * 0.5f;
+
+        Vector3 rayPoint = new Vector3(
+            Random.Range(transform.position.x - SpawnDistanceThreshold, transform.position.x + spawnFallOff),
+            transform.position.y,
+            Random.Range(transform.position.z - SpawnDistanceThreshold, transform.position.z + spawnFallOff) 
+        );
+
+        RaycastHit downHit;
+        
+        if (Physics.Raycast(rayPoint, Vector3.down, out downHit, 4f)) {
+
+            Vector3 spawnLocation = new Vector3(
+                Random.Range(downHit.point.x - SpawnDistanceThreshold, downHit.point.x + spawnFallOff),
+                downHit.point.y,
+                Random.Range(downHit.point.z - SpawnDistanceThreshold, downHit.point.z + spawnFallOff) 
+            );
+
+            if (downHit.collider != null){
+                GameObject newProp = Instantiate(objectToSpawn, spawnLocation, Quaternion.identity);
+                newProp.transform.localScale = Vector3.zero;
+                StartCoroutine(ScaleObject(newProp));
+            }
+        }
     }
 
     bool CanSpawnHere () {
@@ -70,6 +94,19 @@ public class ObjectSpawner : MonoBehaviour
 
         Debug.Log("Can Spawn");
         return true;
+    }
+
+    void GetEcoSystemFromHeight () {
+
+        foreach(Vector3 layer in TerrainLayers.heightLayers){ 
+            if(transform.position.y >= layer.x && transform.position.y < layer.y) {
+
+                Debug.Log("Terrain layer = " + layer);
+                Debug.Log("Terrain layer index = " + TerrainLayers.heightLayers.IndexOf(layer));
+
+            }
+        }
+
     }
 
     IEnumerator ScaleObject (GameObject targetObj) {
@@ -97,7 +134,9 @@ public class ObjectSpawner : MonoBehaviour
     {
 
         if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
-            SpawnObjects();
+            if(CanSpawnHere() == true) {
+                SpawnObjectsSequence();
+            }
         }
         
     }
