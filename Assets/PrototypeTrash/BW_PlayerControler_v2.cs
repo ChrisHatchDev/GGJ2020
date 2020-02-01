@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BW_PlayerControler_v2 : MonoBehaviour
 {
-    Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
     public float speed;
     public float turnSpeed;
     public float inAirSpeedMod = 0.2f;

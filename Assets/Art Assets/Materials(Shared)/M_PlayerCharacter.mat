@@ -128,7 +128,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Transparency: 1
-    - _WaggleSpeed: 5
+    - _WaggleSpeed: 3
     - _WaggleStrength: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
