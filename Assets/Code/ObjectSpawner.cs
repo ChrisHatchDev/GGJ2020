@@ -20,7 +20,6 @@ public class ObjectSpawner : MonoBehaviour
 
     public List<GameObject> SmallProps = new List<GameObject>();
     public List<GameObject> MediumProps = new List<GameObject>();
-    public List<GameObject> LargeProps = new List<GameObject>();
     public List<GameObject> Trees = new List<GameObject>();
 
 
@@ -40,8 +39,17 @@ public class ObjectSpawner : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             StartCoroutine(SpawnObject(SmallProps[Random.Range(0, SmallProps.Count)]));
-            // StartCoroutine(SpawnObject(MediumProps[Random.Range(0, MediumProps.Count)]));
-            // StartCoroutine(SpawnObject(Trees[Random.Range(0, Trees.Count)]));
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            StartCoroutine(SpawnObject(MediumProps[Random.Range(0, MediumProps.Count)]));
+        }
+
+        for (int i = 0; i < 1; i++)
+        {
+            // Spawn a tree only so often
+            StartCoroutine(SpawnObject(Trees[Random.Range(0, Trees.Count)]));
         }
 
     }
@@ -53,9 +61,9 @@ public class ObjectSpawner : MonoBehaviour
             yield break;
         }
 
-        yield return new WaitForSeconds(Random.Range(0, 0.2f));
+        // yield return new WaitForSeconds(Random.Range(0, 0.2f));
 
-        float spawnFallOff = SpawnDistanceThreshold * 0.5f;
+        float spawnFallOff = SpawnDistanceThreshold * 0.25f;
 
         Vector3 rayPoint = new Vector3(
             Random.Range(transform.position.x - SpawnDistanceThreshold, transform.position.x + spawnFallOff),
