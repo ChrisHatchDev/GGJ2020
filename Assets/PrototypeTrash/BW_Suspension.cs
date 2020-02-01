@@ -7,7 +7,8 @@ public class BW_Suspension : MonoBehaviour
 
     private Rigidbody rb;
     public float wheelRadius;
-    public GameObject wheelMesh;
+    //public GameObject wheelMesh;
+    public GameObject fishMesh;
 
     public float springConstant;
     public float damperConstant;
@@ -41,6 +42,8 @@ public class BW_Suspension : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, new Vector3(0,-1,0), out hit, restLength + wheelRadius))
         {
+            //Rotate the mesh to match the ground
+            fishMesh.transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)) * Quaternion.Euler(0, 0, -90);
             isGrounded = true;
             previousLength = currentLength;
             currentLength = restLength - (hit.distance - wheelRadius);
