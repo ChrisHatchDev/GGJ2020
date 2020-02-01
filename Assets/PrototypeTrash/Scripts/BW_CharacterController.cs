@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BW_CharacterController : MonoBehaviour
 {
-    private Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
     public float speed = 100f;
     public float maxSpeed = 200f;
 

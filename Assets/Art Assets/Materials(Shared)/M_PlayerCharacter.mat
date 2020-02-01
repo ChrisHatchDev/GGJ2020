@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_PlayerCharacter
-  m_Shader: {fileID: -6465566751694194690, guid: 4e336ef67fb6537448e286d06a68e49a,
+  m_Shader: {fileID: -6465566751694194690, guid: 61b14c5ca3b2bee45852691b43bdeac1,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -90,6 +90,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_915288A: 0
     - Vector1_5C1CE9B0: 0
     - _AlbedoOffsetX: 0
     - _AlbedoOffsetY: 0
@@ -121,17 +122,20 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0.849
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _Transparency: 1
+    - _WaggleSpeed: 5
+    - _WaggleStrength: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - Color_C57BEA4A: {r: 0, g: 0, b: 0, a: 0}
     - Color_F2BE641: {r: 0, g: 0, b: 0, a: 0}
+    - Vector3_85CBA088: {r: 0, g: 0, b: 1, a: 0}
     - _AlbedoTile: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
