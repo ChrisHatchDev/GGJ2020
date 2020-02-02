@@ -43,7 +43,7 @@ public class BW_Suspension : MonoBehaviour
         if (Physics.Raycast(transform.position, new Vector3(0,-1,0), out hit, restLength + wheelRadius))
         {
             //Rotate the mesh to match the ground
-            fishMesh.transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)) * Quaternion.Euler(0, 0, -90);
+            fishMesh.transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal));
             isGrounded = true;
             previousLength = currentLength;
             currentLength = restLength - (hit.distance - wheelRadius);

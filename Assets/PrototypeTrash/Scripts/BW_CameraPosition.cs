@@ -9,7 +9,7 @@ public class BW_CameraPosition : MonoBehaviour
     public Vector3 offset;
     public Vector3 farOffset;
 
-    public BW_CharacterController playerController;
+    public BW_PlayerControler_v2 playerController;
 
     // Update is called once per frame
     void FixedUpdate()
