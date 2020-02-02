@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3452892443116353013}
   - component: {fileID: 3452892443116353014}
   - component: {fileID: 1948290095}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CharacterController_V2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,26 +258,27 @@ MonoBehaviour:
   PlayerDistanceThreshold: 2
   SmallSpawnAmount: 1
   SmallProps:
-  - {fileID: -927199367670048503, guid: 5bb2c482c192f4460b222950e9afb89d, type: 3}
-  - {fileID: -927199367670048503, guid: 0fcc67e9196814145a8b68e31ce2ef27, type: 3}
-  - {fileID: -927199367670048503, guid: 09c278c0b6d6743798c7aead1369e729, type: 3}
-  - {fileID: -927199367670048503, guid: 0fcc67e9196814145a8b68e31ce2ef27, type: 3}
+  - {fileID: 4643377250749495748, guid: f01e9fb7ee49a416a8ce9811879ef113, type: 3}
+  - {fileID: 4190267730767308827, guid: 362db88bfa05e4e48a34d7b221717f81, type: 3}
+  - {fileID: 2156311035227520562, guid: 4ac0a6673d94543239c586c1fb5d58f3, type: 3}
   MediumSpawnAmount: 3
   MediumProps:
-  - {fileID: -927199367670048503, guid: d9797ed595026421380f2be7d178f984, type: 3}
-  - {fileID: -927199367670048503, guid: 593c337be5f5d47618c0c4f95bd42bac, type: 3}
+  - {fileID: 4120239202210949381, guid: 60c1fc4d0dbc54e699e150a59daf6666, type: 3}
+  - {fileID: 6823296915436062814, guid: 8c29b81b930c140f3808586cda27061d, type: 3}
   TreeSpawnAmount: 2
   Trees:
   - {fileID: 7711781353432763960, guid: eebd010a794c24dadb7b12c9194984d7, type: 3}
   BuildingSpawnAmount: 1
   Buildings:
-  - {fileID: -927199367670048503, guid: ee6992989afbf4f948c7997f6e6705b1, type: 3}
-  - {fileID: -927199367670048503, guid: 5ed6625904e5f42559de49e3358c0b44, type: 3}
+  - {fileID: 5307917025300743394, guid: 66788002238bb43c78e453625f18913a, type: 3}
+  - {fileID: 1374261088672051054, guid: d806f934fd39844928d73ee95f837c65, type: 3}
+  - {fileID: 5418191236950916758, guid: b613ac3657e3244e08283ddf8c0175cd, type: 3}
   Pig: {fileID: 881145405138128911, guid: 0080ef8edf206bf49aa06a63852f2028, type: 3}
   Meep: {fileID: 881145405138128911, guid: ca8a768c2c738466c8eef7026303f523, type: 3}
   CreatureToSpawn: {fileID: 0}
   TerrainPainter: {fileID: 1948290095}
   CameraController: {fileID: 0}
+  TrailParticles: {fileID: 5606623390041942746}
 --- !u!114 &3452892443116353014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,6 +623,12 @@ PrefabInstance:
 --- !u!4 &3106043177207962490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1180287034916327008, guid: 44832c566c8e342e4927a5deb2667e27,
+    type: 3}
+  m_PrefabInstance: {fileID: 4286258193844032794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5606623390041942746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8553852307663945664, guid: 44832c566c8e342e4927a5deb2667e27,
     type: 3}
   m_PrefabInstance: {fileID: 4286258193844032794}
   m_PrefabAsset: {fileID: 0}

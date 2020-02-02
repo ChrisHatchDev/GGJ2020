@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3150154340957375521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rock_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2156311035227520562}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 168.00438, y: 30.41, z: 14.070068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4194106889724492710}
   - component: {fileID: 8843260672357376647}
   - component: {fileID: 849654951960228459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GGJ_Rock_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 5bb2c482c192f4460b222950e9afb89d, type: 3}
+  - {fileID: 2100000, guid: 5ddcba860bfc34394ab025bfe8ca29b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

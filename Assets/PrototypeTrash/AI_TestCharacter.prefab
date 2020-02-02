@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4732575578819463798}
   - component: {fileID: 4198434211571833554}
   - component: {fileID: 4319349531747886913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AI_TestCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 2824999284013767153}
   - component: {fileID: 163589923974600277}
   - component: {fileID: 5704307827940216250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8294843744887692442}
   - component: {fileID: 8795312697904956485}
   - component: {fileID: 990682390351971139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

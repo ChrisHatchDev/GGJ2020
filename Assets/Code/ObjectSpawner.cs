@@ -35,11 +35,13 @@ public class ObjectSpawner : MonoBehaviour
 
     public CH_TerrainPainting TerrainPainter;
     public CH_CameraPosition CameraController;
+    public GameObject TrailParticles;
 
 
     void Start()
     {
         previousSpawnLocation = transform.position;
+        TrailParticles.SetActive(false);
         SelectTreeTerrain();
     }
 
@@ -262,6 +264,7 @@ public class ObjectSpawner : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space)) {
             CameraController.CloseMode = false;
+            TrailParticles.SetActive(true);
             if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
                 if(CanSpawnHere() == true) {
                     SpawnObjectsSequence();
