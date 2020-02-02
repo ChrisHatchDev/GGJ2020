@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 503fe93b06cf6da4791546a43e210170, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 238f3de46f4bd6840b6e12fb42c770a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -91,10 +91,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_915288A: 0
-    - Vector1_5C1CE9B0: 0
+    - Vector1_5C1CE9B0: 1
     - _AlbedoOffsetX: 0
     - _AlbedoOffsetY: 0
-    - _AlbedoTileY: 0
+    - _AlbedoTileY: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -103,8 +103,8 @@ Material:
     - _DstBlend: 0
     - _EmissiveOffsetX: 0
     - _EmissiveOffsetY: 0
-    - _EmissiveTileX: 0
-    - _EmissiveTileY: 0
+    - _EmissiveTileX: 1
+    - _EmissiveTileY: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -112,17 +112,17 @@ Material:
     - _Metallic: 0
     - _MetallicOffsetX: 0
     - _MetallicOffsetY: 0
-    - _MetallicTileX: 0
-    - _MetallicTile_Y: 0
+    - _MetallicTileX: 1
+    - _MetallicTile_Y: 1
     - _NormalOffsetX: 0
     - _NormalOffsetY: 0
     - _NormalStrength: 0
-    - _NormalTileX: 0
-    - _NormalTileY: 0
+    - _NormalTileX: 1
+    - _NormalTileY: 1
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.849
+    - _Smoothness: 0.919
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
