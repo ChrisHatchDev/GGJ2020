@@ -38,15 +38,22 @@ public class ObjectSpawner : MonoBehaviour
 
     public CH_TerrainPainting TerrainPainter;
     public CH_CameraPosition CameraController;
-    public GameObject TrailParticles;
+    public ParticleSystem TrailParticles;
 
     private Player player; // The Rewired Player
+
+    List<bool> FaceButtons = new List<bool>();
 
     void Start()
     {
         previousSpawnLocation = transform.position;
-        TrailParticles.SetActive(false);
+        TrailParticles.Pause();
         SelectTreeTerrain();
+
+        FaceButtons.Add(false);
+        FaceButtons.Add(false);
+        FaceButtons.Add(false);
+        FaceButtons.Add(false);
 
         player = ReInput.players.GetPlayer(0);
     }
@@ -185,9 +192,9 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnAnimals() {
         
-        for (int i = 0; i < Random.Range(0,2); i++)
+        for (int i = 0; i < Random.Range(1,3); i++)
         {
-            StartCoroutine(SpawnObject(CreatureToSpawn, true, false));
+            StartCoroutine(SpawnObject(CreatureToSpawn, false, false));
         }
     }
 
@@ -240,7 +247,7 @@ public class ObjectSpawner : MonoBehaviour
     void SelectTreeTerrain () {
         SmallSpawnAmount = 2;
         MediumSpawnAmount = 3;
-        TreeSpawnAmount = 3;
+        TreeSpawnAmount = 4;
         BuildingSpawnAmount = 0;
         GrassSpawnAmount = 8;
 
@@ -254,7 +261,7 @@ public class ObjectSpawner : MonoBehaviour
         MediumSpawnAmount = 1;
         TreeSpawnAmount = 0;
         BuildingSpawnAmount = 0;
-        GrassSpawnAmount = 10;
+        GrassSpawnAmount = 8;
 
         TerrainPainter.SetTextureParams(1,1);
 
@@ -276,32 +283,51 @@ public class ObjectSpawner : MonoBehaviour
     void Update()
     {
 
-        if(player.GetAxis("createObjects") > 0.2f) {
+        bool ShouldSpawn =false;
+
+        FaceButtons[0] = player.GetButton("Biome1");
+        FaceButtons[1] = player.GetButton("Biome2");
+        FaceButtons[2] = player.GetButton("Biome3");
+        FaceButtons[3] = player.GetButton("Biome4");
+
+        foreach(bool button in FaceButtons) {
+            if(button){
+                ShouldSpawn = true;
+            }
+        }
+
+        if(player.GetButton("Biome1")) {
             CameraController.CloseMode = false;
-            TrailParticles.SetActive(true);
+            SelectGrassLands();
+        }
+
+        if(player.GetButton("Biome2")) {
+            CameraController.CloseMode = false;
+            SelectRockyTerrain();
+        }
+
+        if(player.GetButton("Biome3")) {
+            CameraController.CloseMode = false;
+            SelectTreeTerrain();
+        }
+
+        if(player.GetButton("Biome4")) {
+            CameraController.CloseMode = false;
+            SelectHouses();
+        }
+
+        if(ShouldSpawn) {
+            CameraController.CloseMode = false;
+            TrailParticles.Play();
+
             if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
                 if(CanSpawnHere() == true) {
                     SpawnObjectsSequence();
                 }
             }
         } else { 
+            TrailParticles.Pause();
             CameraController.CloseMode = true;
-        }
-
-        if(player.GetButtonDown("Biome1")) {
-            SelectRockyTerrain();
-        }
-
-        if(player.GetButtonDown("Biome2")) {
-            SelectGrassLands();
-        }
-
-        if(player.GetButtonDown("Biome3")) {
-            SelectTreeTerrain();
-        }
-
-        if(player.GetButtonDown("Biome4")) {
-            SelectHouses();
         }
         
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7949144859721811284}
   - component: {fileID: 7949144859721811285}
   - component: {fileID: 7949144859721811282}
+  - component: {fileID: 8167668988644119731}
   m_Layer: 0
   m_Name: CameraLow
   m_TagString: MainCamera
@@ -141,3 +142,18 @@ MonoBehaviour:
   playerController: {fileID: 0}
   originalPlayerTurnSpeed: 0
   CloseMode: 1
+--- !u!114 &8167668988644119731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949144859721811283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de2843df8b025a4d931653d8b32870d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  pC: {fileID: 0}
+  pauseActive: 0
