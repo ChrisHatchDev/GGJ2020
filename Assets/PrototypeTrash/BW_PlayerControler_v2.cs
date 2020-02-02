@@ -7,13 +7,13 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     [HideInInspector]public Rigidbody rb;
     public float speed;
     public float turnSpeed;
-    public float originalTurnSpeed;
     public float inAirSpeedMod = 0.2f;
     public float angularDrag = 0.5f;
     public float MaxSpeed = 20;
     [HideInInspector]
 
     private BW_Suspension vehicleSupspension;
+    public MeshRenderer fishRenderer;
 
     // Use this for initialization
     void Start()
@@ -25,6 +25,10 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        float speedScale = Mathf.InverseLerp(8, 20, rb.velocity.magnitude);
+        fishRenderer.material.SetFloat("_WaggleSpeed", Mathf.Lerp( 1, 5, speedScale));
+
         //Set the angular drag value
         rb.angularDrag = angularDrag;
 
