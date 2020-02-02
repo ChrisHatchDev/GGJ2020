@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &144109328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144109329}
+  m_Layer: 0
+  m_Name: MimeObjectFar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &144109329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144109328}
+  m_LocalRotation: {x: 0.3326596, y: -0, z: -0, w: 0.943047}
+  m_LocalPosition: {x: -0.2599945, y: 12.79, z: -10.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6373119923002488813}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 38.861, y: 0, z: 0}
+--- !u!1 &576075557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 576075558}
+  m_Layer: 0
+  m_Name: MimeObjectMedium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &576075558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576075557}
+  m_LocalRotation: {x: 0.13653094, y: -0, z: -0, w: 0.9906359}
+  m_LocalPosition: {x: -0.2599945, y: 1.78, z: -5.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6373119923002488813}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 15.694001, y: 0, z: 0}
+--- !u!1 &1854487203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1854487204}
+  m_Layer: 0
+  m_Name: MimeObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1854487204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854487203}
+  m_LocalRotation: {x: 0.07724597, y: -0, z: -0, w: 0.9970121}
+  m_LocalPosition: {x: -0.2599945, y: 1.210001, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6373119923002488813}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 8.861, y: 0, z: 0}
 --- !u!1 &4485624337988433966
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +124,9 @@ Transform:
   - {fileID: 4805091525462669262}
   - {fileID: 7679085618833986370}
   - {fileID: 3106043177207962490}
+  - {fileID: 1854487204}
+  - {fileID: 576075558}
+  - {fileID: 144109329}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,8 +236,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   GrowthSpeed: 0.1
   TargetSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnDistanceThreshold: 5
-  PlayerDistanceThreshold: 1
+  SpawnDistanceThreshold: 6
+  PlayerDistanceThreshold: 2
   SmallSpawnAmount: 1
   SmallProps:
   - {fileID: -927199367670048503, guid: 5bb2c482c192f4460b222950e9afb89d, type: 3}
@@ -163,6 +256,7 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: ee6992989afbf4f948c7997f6e6705b1, type: 3}
   - {fileID: -927199367670048503, guid: 5ed6625904e5f42559de49e3358c0b44, type: 3}
   TerrainPainter: {fileID: 1948290095}
+  CameraController: {fileID: 0}
 --- !u!114 &3452892443116353014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 15000
-  turnSpeed: 6000
+  turnSpeed: 5500
+  originalTurnSpeed: 0
   inAirSpeedMod: 0.2
   angularDrag: 10
   MaxSpeed: 20
