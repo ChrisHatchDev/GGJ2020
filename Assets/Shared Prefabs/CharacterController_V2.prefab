@@ -272,10 +272,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 15000
   turnSpeed: 5500
-  originalTurnSpeed: 0
   inAirSpeedMod: 0.2
   angularDrag: 10
   MaxSpeed: 20
+  fishRenderer: {fileID: 2037958648387600509}
 --- !u!114 &1948290095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4485624337988433966}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44480aad78094366ab368eb20db8e78, type: 3}
   m_Name: 
@@ -515,6 +515,12 @@ GameObject:
 --- !u!4 &7679085618833986370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 69abf5866a7f34aaa90f00f13227b7e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3452892442317076568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2037958648387600509 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5502435615009621979, guid: 69abf5866a7f34aaa90f00f13227b7e1,
     type: 3}
   m_PrefabInstance: {fileID: 3452892442317076568}
   m_PrefabAsset: {fileID: 0}

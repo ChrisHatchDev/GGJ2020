@@ -6568,6 +6568,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 677268522d6fe1441bb68391fc728940, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9797ed595026421380f2be7d178f984, type: 3}
+--- !u!114 &849349189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7949144859721811282, guid: 5fb0b85fdfdb64f8891fbd652d53f7f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1241842664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfefbcb0717844deaa330174709cb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861300866
 GameObject:
   m_ObjectHideFlags: 0
@@ -10114,17 +10126,17 @@ PrefabInstance:
     - target: {fileID: 7949144859721811286, guid: 5fb0b85fdfdb64f8891fbd652d53f7f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 188.99
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 7949144859721811286, guid: 5fb0b85fdfdb64f8891fbd652d53f7f8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.65
+      value: 70.66
       objectReference: {fileID: 0}
     - target: {fileID: 7949144859721811286, guid: 5fb0b85fdfdb64f8891fbd652d53f7f8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7399998
+      value: 189.56
       objectReference: {fileID: 0}
     - target: {fileID: 7949144859721811286, guid: 5fb0b85fdfdb64f8891fbd652d53f7f8,
         type: 3}
@@ -10851,6 +10863,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1948290095, guid: 2d2d9177f47864b5388b3804b916febe, type: 3}
+      propertyPath: myTerrain
+      value: 
+      objectReference: {fileID: 1802460572}
+    - target: {fileID: 3452892443116353013, guid: 2d2d9177f47864b5388b3804b916febe,
+        type: 3}
+      propertyPath: CameraController
+      value: 
+      objectReference: {fileID: 849349189}
     - target: {fileID: 4485624337988433966, guid: 2d2d9177f47864b5388b3804b916febe,
         type: 3}
       propertyPath: m_Name

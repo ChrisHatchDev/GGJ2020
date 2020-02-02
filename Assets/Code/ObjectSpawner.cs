@@ -222,7 +222,7 @@ public class ObjectSpawner : MonoBehaviour
                     SpawnObjectsSequence();
                 }
             }
-        } else {
+        } else { 
             CameraController.CloseMode = true;
         }
 
