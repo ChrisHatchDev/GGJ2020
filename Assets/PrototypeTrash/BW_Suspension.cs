@@ -30,7 +30,7 @@ public class BW_Suspension : MonoBehaviour
         get { return isGrounded; }
     }
 
-    // STANDARD FUNCTIONS //
+    // STANDARD FUNCTIONS // 
     void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
@@ -43,14 +43,14 @@ public class BW_Suspension : MonoBehaviour
         if (Physics.Raycast(transform.position, new Vector3(0,-1,0), out hit, restLength + wheelRadius))
         {
             //Rotate the mesh to match the ground
-            fishMesh.transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal));
+            fishMesh.transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)) * Quaternion.Euler(0, 0, -90);
             isGrounded = true;
             previousLength = currentLength;
             currentLength = restLength - (hit.distance - wheelRadius);
             springVelocity = (currentLength - previousLength) / Time.fixedDeltaTime;
             springForce = springConstant * currentLength;
             damperForce = damperConstant * springVelocity;
-            //The orginal way to do this much more correct, added force up the local UP vector
+            //The orginal way to do this much more correct, added force up the local UP vector 
             rb.AddForceAtPosition(transform.up * (springForce + damperForce), transform.position);
 
             //Modified version for more control adds force up in world space, no loops im guessing but better ground control
@@ -64,11 +64,11 @@ public class BW_Suspension : MonoBehaviour
         }
         else isGrounded = false;
 
-
+        
 
     }
 
-    //This adds a sideforce into the car if its not pointing in the same direction as the cars velocity is moving.
+    //This adds a sideforce into the car if its not pointing in the same direction as the cars velocity is moving. 
     void SidewayVehicleSlip()
     {
         Vector3 sidewaysForce;
@@ -97,7 +97,7 @@ public class BW_Suspension : MonoBehaviour
 
 
 
-    // PHYSICS FUNCTIONS //
+    // PHYSICS FUNCTIONS // 
 
 
     // AUDIO VISUAL FUNCTIONS //

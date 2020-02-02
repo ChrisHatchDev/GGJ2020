@@ -15,18 +15,12 @@ public class ObjectSpawner : MonoBehaviour
 
     private Vector3 previousSpawnLocation;
     public float SpawnDistanceThreshold = 5;
-    public float PlayerDistanceThreshold = 1;
 
     private List<Vector3> spawnLocations = new List<Vector3>();
 
-    public int SmallSpawnAmount = 1;
     public List<GameObject> SmallProps = new List<GameObject>();
-    public int MediumSpawnAmount = 1;
     public List<GameObject> MediumProps = new List<GameObject>();
-    public int TreeSpawnAmount = 1;
     public List<GameObject> Trees = new List<GameObject>();
-    public int BuildingSpawnAmount = 1;
-    public List<GameObject> Buildings = new List<GameObject>();
 
 
     void Start()
@@ -42,31 +36,25 @@ public class ObjectSpawner : MonoBehaviour
         previousSpawnLocation = transform.position;
         spawnLocations.Add(transform.position);
 
-        for (int i = 0; i < SmallSpawnAmount; i++)
+        for (int i = 0; i < 2; i++)
         {
-            StartCoroutine(SpawnObject(SmallProps[Random.Range(0, SmallProps.Count)], true, false));
+            StartCoroutine(SpawnObject(SmallProps[Random.Range(0, SmallProps.Count)]));
         }
 
-        for (int i = 0; i < MediumSpawnAmount; i++)
+        for (int i = 0; i < 2; i++)
         {
-            StartCoroutine(SpawnObject(MediumProps[Random.Range(0, MediumProps.Count)], true, false));
+            StartCoroutine(SpawnObject(MediumProps[Random.Range(0, MediumProps.Count)]));
         }
 
-        for (int i = 0; i < TreeSpawnAmount; i++)
+        for (int i = 0; i < 1; i++)
         {
             // Spawn a tree only so often
-            StartCoroutine(SpawnObject(Trees[Random.Range(0, Trees.Count)], true, true));
-        }
-
-        for (int i = 0; i < BuildingSpawnAmount; i++)
-        {
-            // Spawn a tree only so often
-            StartCoroutine(SpawnObject(Buildings[Random.Range(0, Buildings.Count)], false, false));
+            StartCoroutine(SpawnObject(Trees[Random.Range(0, Trees.Count)]));
         }
 
     }
 
-    IEnumerator SpawnObject (GameObject objectToSpawn, bool matchGroundLevel, bool randomScale) {
+    IEnumerator SpawnObject (GameObject objectToSpawn) {
 
         if (objectToSpawn == null) {
             Debug.LogError("Prop List was Empty");
@@ -78,12 +66,10 @@ public class ObjectSpawner : MonoBehaviour
         float spawnFallOff = SpawnDistanceThreshold * 0.25f;
 
         Vector3 rayPoint = new Vector3(
-            Random.Range((transform.position.x - PlayerDistanceThreshold) - SpawnDistanceThreshold, (transform.position.x + PlayerDistanceThreshold) + spawnFallOff),
+            Random.Range(transform.position.x - SpawnDistanceThreshold, transform.position.x + spawnFallOff),
             transform.position.y,
-            transform.position.z);
-
-            /*
-            Random.Range((transform.position.z - PlayerDistanceThreshold) - SpawnDistanceThreshold, (transform.position.z + PlayerDistanceThreshold) + spawnFallOff) */
+            Random.Range(transform.position.z - SpawnDistanceThreshold, transform.position.z + spawnFallOff) 
+        );
 
         RaycastHit downHit;
         
@@ -98,26 +84,7 @@ public class ObjectSpawner : MonoBehaviour
             if (downHit.collider != null){
                 GameObject newProp = Instantiate(objectToSpawn, spawnLocation, Quaternion.identity);
                 newProp.transform.localScale = Vector3.zero;
-
-                if(matchGroundLevel) {
-                    newProp.transform.rotation = Quaternion.Euler(
-                        downHit.normal.x,
-                        Random.Range(0,360),
-                        downHit.normal.y
-                    );
-                } else {
-                    newProp.transform.rotation = Quaternion.Euler(
-                        newProp.transform.rotation.x,
-                        Random.Range(0,360),
-                        newProp.transform.rotation.z
-                    );
-                }
-
-                if(randomScale) {
-                    StartCoroutine(ScaleObject(newProp, Random.Range(0.7f, 1.3f)));
-                } else {
-                    StartCoroutine(ScaleObject(newProp, -1));
-                }
+                StartCoroutine(ScaleObject(newProp));
             }
         }
     }
@@ -150,18 +117,14 @@ public class ObjectSpawner : MonoBehaviour
 
     }
 
-    IEnumerator ScaleObject (GameObject targetObj, float targetScale) {
+    IEnumerator ScaleObject (GameObject targetObj) {
 
         while(true) {
             
             float growthRate = GrowthTimeCurve.Evaluate(GrowthSpeed);
             // float scaleCurve = GrowthSizeCurve.Evaluate(GrowthSpeed * Time.deltaTime);
 
-            if(targetScale != -1) {
-                targetObj.transform.localScale = Vector3.LerpUnclamped(targetObj.transform.localScale, new Vector3(targetScale,targetScale,targetScale), growthRate);
-            } else {
-                targetObj.transform.localScale = Vector3.LerpUnclamped(targetObj.transform.localScale, Vector3.one, growthRate);
-            }
+            targetObj.transform.localScale = Vector3.LerpUnclamped(targetObj.transform.localScale, Vector3.one, growthRate);
 
             if(targetObj.transform.localScale.y == Vector3.one.y) {
                 break;
@@ -170,62 +133,18 @@ public class ObjectSpawner : MonoBehaviour
             yield return null;
         }
 
-    }
 
-    void SelectRockyTerrain () {
-        SmallSpawnAmount = 2;
-        MediumSpawnAmount = 4;
-        TreeSpawnAmount = 1;
-        BuildingSpawnAmount = 0;
-    }
 
-    void SelectTreeTerrain () {
-        SmallSpawnAmount = 2;
-        MediumSpawnAmount = 3;
-        TreeSpawnAmount = 3;
-        BuildingSpawnAmount = 0;
-    }
-
-    void SelectGrassLands () {
-        SmallSpawnAmount = 3;
-        MediumSpawnAmount = 1;
-        TreeSpawnAmount = 0;
-        BuildingSpawnAmount = 0;
-    }
-
-    void SelectHouses () {
-        SmallSpawnAmount = 3;
-        MediumSpawnAmount = 1;
-        TreeSpawnAmount = 0;
-        BuildingSpawnAmount = 1;
     }
 
 
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Space)) {
-            if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
-                if(CanSpawnHere() == true) {
-                    SpawnObjectsSequence();
-                }
+        if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
+            if(CanSpawnHere() == true) {
+                SpawnObjectsSequence();
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.F)) {
-            SelectGrassLands();
-        }
-
-        if(Input.GetKeyDown(KeyCode.G)) {
-            SelectTreeTerrain();
-        }
-
-        if(Input.GetKeyDown(KeyCode.H)) {
-            SelectRockyTerrain();
-        }
-
-        if(Input.GetKeyDown(KeyCode.J)) {
-            SelectHouses();
         }
         
     }
