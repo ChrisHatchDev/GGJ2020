@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class ObjectSpawner : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class ObjectSpawner : MonoBehaviour
     public List<GameObject> MediumProps = new List<GameObject>();
     public int TreeSpawnAmount = 1;
     public List<GameObject> Trees = new List<GameObject>();
+    public int GrassSpawnAmount = 1;
+    public List<GameObject> GrassProps = new List<GameObject>();
     public int BuildingSpawnAmount = 1;
     public List<GameObject> Buildings = new List<GameObject>();
 
@@ -37,12 +40,15 @@ public class ObjectSpawner : MonoBehaviour
     public CH_CameraPosition CameraController;
     public GameObject TrailParticles;
 
+    private Player player; // The Rewired Player
 
     void Start()
     {
         previousSpawnLocation = transform.position;
         TrailParticles.SetActive(false);
         SelectTreeTerrain();
+
+        player = ReInput.players.GetPlayer(0);
     }
 
 
@@ -77,6 +83,12 @@ public class ObjectSpawner : MonoBehaviour
         {
             // Spawn a tree only so often
             StartCoroutine(SpawnObject(Buildings[Random.Range(0, Buildings.Count)], false, false));
+        }
+
+        for (int i = 0; i < GrassSpawnAmount; i++)
+        {
+            // Spawn a tree only so often
+            StartCoroutine(SpawnObject(GrassProps[Random.Range(0, GrassProps.Count)], false, false));
         }
 
 
@@ -219,7 +231,7 @@ public class ObjectSpawner : MonoBehaviour
         MediumSpawnAmount = 4;
         TreeSpawnAmount = 1;
         BuildingSpawnAmount = 0;
-        
+        GrassSpawnAmount = 1;
         TerrainPainter.SetTextureParams(1,0);
 
         CreatureToSpawn = null;
@@ -230,7 +242,8 @@ public class ObjectSpawner : MonoBehaviour
         MediumSpawnAmount = 3;
         TreeSpawnAmount = 3;
         BuildingSpawnAmount = 0;
-        
+        GrassSpawnAmount = 8;
+
         TerrainPainter.SetTextureParams(1,1);
 
         CreatureToSpawn = Pig;
@@ -241,6 +254,7 @@ public class ObjectSpawner : MonoBehaviour
         MediumSpawnAmount = 1;
         TreeSpawnAmount = 0;
         BuildingSpawnAmount = 0;
+        GrassSpawnAmount = 10;
 
         TerrainPainter.SetTextureParams(1,1);
 
@@ -252,7 +266,7 @@ public class ObjectSpawner : MonoBehaviour
         MediumSpawnAmount = 1;
         TreeSpawnAmount = 0;
         BuildingSpawnAmount = 1;
-
+        GrassSpawnAmount = 5;
         TerrainPainter.SetTextureParams(1,2);
 
         CreatureToSpawn = Meep;
@@ -262,7 +276,7 @@ public class ObjectSpawner : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.Space)) {
+        if(player.GetAxis("createObjects") > 0.2f) {
             CameraController.CloseMode = false;
             TrailParticles.SetActive(true);
             if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
@@ -274,19 +288,19 @@ public class ObjectSpawner : MonoBehaviour
             CameraController.CloseMode = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.F)) {
-            SelectGrassLands();
-        }
-
-        if(Input.GetKeyDown(KeyCode.G)) {
-            SelectTreeTerrain();
-        }
-
-        if(Input.GetKeyDown(KeyCode.H)) {
+        if(player.GetButtonDown("Biome1")) {
             SelectRockyTerrain();
         }
 
-        if(Input.GetKeyDown(KeyCode.J)) {
+        if(player.GetButtonDown("Biome2")) {
+            SelectGrassLands();
+        }
+
+        if(player.GetButtonDown("Biome3")) {
+            SelectTreeTerrain();
+        }
+
+        if(player.GetButtonDown("Biome4")) {
             SelectHouses();
         }
         

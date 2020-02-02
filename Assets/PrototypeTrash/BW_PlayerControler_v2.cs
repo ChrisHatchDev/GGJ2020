@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class BW_PlayerControler_v2 : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     private BW_Suspension vehicleSupspension;
     public MeshRenderer fishRenderer;
 
+    private Player player; // Use for input init
+    public float InputDeadZone = 0.2f;
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         vehicleSupspension = GetComponentInChildren<BW_Suspension>();
+
+        player = ReInput.players.GetPlayer(0);
     }
 
     // Update is called once per frame
@@ -35,46 +41,46 @@ public class BW_PlayerControler_v2 : MonoBehaviour
         if (vehicleSupspension.IsGrounded == true)
         {
 
-            if (Input.GetKey(KeyCode.W))
+            if (player.GetAxis("MoveForward") > InputDeadZone)
             {
-                rb.AddForce(transform.forward * speed);
+                rb.AddForce(transform.forward * (speed * player.GetAxis("MoveForward")));
             }
-            if (Input.GetKey(KeyCode.S))
+            if (player.GetAxis("MoveForward") < -InputDeadZone)
             {
-                rb.AddForce(transform.forward * -speed);
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb.AddTorque(transform.up * turnSpeed);
+                rb.AddForce(transform.forward * (speed * player.GetAxis("MoveForward")));
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (player.GetAxis("MoveLeftRight") > InputDeadZone)
             {
-                rb.AddTorque(transform.up * -turnSpeed);
+                rb.AddTorque(transform.up * (turnSpeed * player.GetAxis("MoveLeftRight")));
+            }
+
+            if (player.GetAxis("MoveLeftRight") < -InputDeadZone)
+            {
+                rb.AddTorque(transform.up * (turnSpeed * player.GetAxis("MoveLeftRight")));
             }
         }
 
         if (vehicleSupspension.IsGrounded == false)
         {
 
-            if (Input.GetKey(KeyCode.W))
+            if (player.GetAxis("MoveForward") > InputDeadZone)
             {
-                rb.AddForce(transform.forward * speed * inAirSpeedMod);
+                rb.AddForce(transform.forward * (speed * inAirSpeedMod) * player.GetAxis("MoveForward"));
             }
-            if (Input.GetKey(KeyCode.S))
+            if (player.GetAxis("MoveForward") < -InputDeadZone)
             {
-                rb.AddForce(transform.forward * -speed * inAirSpeedMod);
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb.AddTorque(transform.up * turnSpeed);
+                rb.AddForce(transform.forward * (speed * inAirSpeedMod) * player.GetAxis("MoveForward"));
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (player.GetAxis("MoveLeftRight") > InputDeadZone)
             {
-                rb.AddTorque(transform.up * -turnSpeed);
+                rb.AddTorque(transform.up * (turnSpeed * player.GetAxis("MoveLeftRight")));
+            }
+
+            if (player.GetAxis("MoveLeftRight") < -InputDeadZone)
+            {
+                rb.AddTorque(transform.up * (turnSpeed * player.GetAxis("MoveLeftRight")));
             }
         }
 
