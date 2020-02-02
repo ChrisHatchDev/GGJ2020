@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: fx_flower_01
-  m_Shader: {fileID: -6465566751694194690, guid: bc69741a8437ee945b7b17409ebe5a82,
+  m_Shader: {fileID: -6465566751694194690, guid: 3843ac40732645f4dbf31cef3bed3e02,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -120,7 +120,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_C57BEA4A: {r: 0, g: 0, b: 0, a: 0}
+    - Color_C57BEA4A: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
