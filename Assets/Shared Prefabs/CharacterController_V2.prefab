@@ -172,6 +172,24 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.4829459
+      value: 0.268766
+      inSlope: 1.2969255
+      outSlope: 1.2969255
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.742584
+      value: 0.94982237
+      inSlope: 1.6942791
+      outSlope: 1.6942791
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -234,9 +252,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  GrowthSpeed: 0.1
+  GrowthSpeed: 0.02
   TargetSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnDistanceThreshold: 6
+  SpawnDistanceThreshold: 3
   PlayerDistanceThreshold: 2
   SmallSpawnAmount: 1
   SmallProps:
@@ -255,6 +273,9 @@ MonoBehaviour:
   Buildings:
   - {fileID: -927199367670048503, guid: ee6992989afbf4f948c7997f6e6705b1, type: 3}
   - {fileID: -927199367670048503, guid: 5ed6625904e5f42559de49e3358c0b44, type: 3}
+  Pig: {fileID: 881145405138128911, guid: 0080ef8edf206bf49aa06a63852f2028, type: 3}
+  Meep: {fileID: 881145405138128911, guid: ca8a768c2c738466c8eef7026303f523, type: 3}
+  CreatureToSpawn: {fileID: 0}
   TerrainPainter: {fileID: 1948290095}
   CameraController: {fileID: 0}
 --- !u!114 &3452892443116353014
@@ -534,17 +555,17 @@ PrefabInstance:
     - target: {fileID: 1180287034916327008, guid: 44832c566c8e342e4927a5deb2667e27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 181.20764
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1180287034916327008, guid: 44832c566c8e342e4927a5deb2667e27,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.753853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1180287034916327008, guid: 44832c566c8e342e4927a5deb2667e27,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.831666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1180287034916327008, guid: 44832c566c8e342e4927a5deb2667e27,
         type: 3}
@@ -590,6 +611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ParticlesAnchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398905895272918955, guid: 44832c566c8e342e4927a5deb2667e27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44832c566c8e342e4927a5deb2667e27, type: 3}

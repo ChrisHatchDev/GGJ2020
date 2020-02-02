@@ -37,7 +37,7 @@ public class CH_CameraPosition : MonoBehaviour
         float speedScale = 0; 
         speedScale = Mathf.InverseLerp(8, 20, playerController.rb.velocity.magnitude);
 
-        Debug.Log("Speed scale = " + speedScale);
+        // Debug.Log("Speed scale = " + speedScale);
         Vector3 desiredPosition = Vector3.one;
         Quaternion desiredRotation;
 

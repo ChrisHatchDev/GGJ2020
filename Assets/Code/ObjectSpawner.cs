@@ -28,6 +28,11 @@ public class ObjectSpawner : MonoBehaviour
     public int BuildingSpawnAmount = 1;
     public List<GameObject> Buildings = new List<GameObject>();
 
+    public GameObject Pig;
+    public GameObject Meep;
+
+    public GameObject CreatureToSpawn;
+
     public CH_TerrainPainting TerrainPainter;
     public CH_CameraPosition CameraController;
 
@@ -35,6 +40,7 @@ public class ObjectSpawner : MonoBehaviour
     void Start()
     {
         previousSpawnLocation = transform.position;
+        SelectTreeTerrain();
     }
 
 
@@ -44,6 +50,10 @@ public class ObjectSpawner : MonoBehaviour
 
         previousSpawnLocation = transform.position;
         spawnLocations.Add(transform.position);
+
+        if(CreatureToSpawn != null){
+            SpawnAnimals();
+        }
 
         for (int i = 0; i < SmallSpawnAmount; i++)
         {
@@ -67,6 +77,7 @@ public class ObjectSpawner : MonoBehaviour
             StartCoroutine(SpawnObject(Buildings[Random.Range(0, Buildings.Count)], false, false));
         }
 
+
     }
 
     IEnumerator SpawnObject (GameObject objectToSpawn, bool matchGroundLevel, bool randomScale) {
@@ -81,12 +92,15 @@ public class ObjectSpawner : MonoBehaviour
         float spawnFallOff = SpawnDistanceThreshold * 0.25f;
 
         Vector3 rayPoint = new Vector3(
-            Random.Range((transform.position.x - PlayerDistanceThreshold) - SpawnDistanceThreshold, (transform.position.x + PlayerDistanceThreshold) + spawnFallOff),
+            Random.Range((transform.position.x - SpawnDistanceThreshold) - spawnFallOff, (transform.position.x + SpawnDistanceThreshold) + spawnFallOff),
             transform.position.y,
-            transform.position.z);
+             Random.Range((transform.position.z - SpawnDistanceThreshold) - spawnFallOff, (transform.position.z + SpawnDistanceThreshold) + spawnFallOff));
 
             /*
             Random.Range((transform.position.z - PlayerDistanceThreshold) - SpawnDistanceThreshold, (transform.position.z + PlayerDistanceThreshold) + spawnFallOff) */
+        if(CanPropSpawnHere(rayPoint) == false) {
+            yield break;
+        }
 
         RaycastHit downHit;
         
@@ -117,7 +131,7 @@ public class ObjectSpawner : MonoBehaviour
                 }
 
                 if(randomScale) {
-                    StartCoroutine(ScaleObject(newProp, Random.Range(0.7f, 1.3f)));
+                    StartCoroutine(ScaleObject(newProp, Random.Range(0.5f, 1.4f)));
                 } else {
                     StartCoroutine(ScaleObject(newProp, -1));
                 }
@@ -138,6 +152,29 @@ public class ObjectSpawner : MonoBehaviour
 
         Debug.Log("Can Spawn");
         return true;
+    }
+
+    bool CanPropSpawnHere (Vector3 potentialPropSpawnPoint) {
+
+        foreach(Vector3 loc in spawnLocations) {
+
+            if (Vector3.Distance(potentialPropSpawnPoint, loc) < SpawnDistanceThreshold) {
+                Debug.Log("CANT Spawn");
+                return false;
+            }
+
+        }
+
+        Debug.Log("Can Spawn");
+        return true;
+    }
+
+    void SpawnAnimals() {
+        
+        for (int i = 0; i < Random.Range(0,2); i++)
+        {
+            StartCoroutine(SpawnObject(CreatureToSpawn, true, false));
+        }
     }
 
     void GetEcoSystemFromHeight () {
@@ -182,6 +219,8 @@ public class ObjectSpawner : MonoBehaviour
         BuildingSpawnAmount = 0;
         
         TerrainPainter.SetTextureParams(1,0);
+
+        CreatureToSpawn = null;
     }
 
     void SelectTreeTerrain () {
@@ -191,6 +230,8 @@ public class ObjectSpawner : MonoBehaviour
         BuildingSpawnAmount = 0;
         
         TerrainPainter.SetTextureParams(1,1);
+
+        CreatureToSpawn = Pig;
     }
 
     void SelectGrassLands () {
@@ -200,6 +241,8 @@ public class ObjectSpawner : MonoBehaviour
         BuildingSpawnAmount = 0;
 
         TerrainPainter.SetTextureParams(1,1);
+
+        CreatureToSpawn = Pig;
     }
 
     void SelectHouses () {
@@ -209,6 +252,8 @@ public class ObjectSpawner : MonoBehaviour
         BuildingSpawnAmount = 1;
 
         TerrainPainter.SetTextureParams(1,2);
+
+        CreatureToSpawn = Meep;
     }
 
 

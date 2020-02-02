@@ -27,7 +27,7 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     {
 
         float speedScale = Mathf.InverseLerp(8, 20, rb.velocity.magnitude);
-        fishRenderer.material.SetFloat("_WaggleSpeed", Mathf.Lerp( 1, 5, speedScale));
+        // TOo much jank for now fishRenderer.material.SetFloat("_WaggleSpeed", Mathf.Lerp( 1, 5, speedScale));
 
         //Set the angular drag value
         rb.angularDrag = angularDrag;
