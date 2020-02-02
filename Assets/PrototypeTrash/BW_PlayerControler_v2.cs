@@ -7,13 +7,13 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     [HideInInspector]public Rigidbody rb;
     public float speed;
     public float turnSpeed;
+    public float originalTurnSpeed;
     public float inAirSpeedMod = 0.2f;
     public float angularDrag = 0.5f;
     public float MaxSpeed = 20;
     [HideInInspector]
 
     private BW_Suspension vehicleSupspension;
-
 
     // Use this for initialization
     void Start()

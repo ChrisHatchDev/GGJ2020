@@ -29,6 +29,7 @@ public class ObjectSpawner : MonoBehaviour
     public List<GameObject> Buildings = new List<GameObject>();
 
     public CH_TerrainPainting TerrainPainter;
+    public CH_CameraPosition CameraController;
 
 
     void Start()
@@ -215,11 +216,14 @@ public class ObjectSpawner : MonoBehaviour
     {
 
         if(Input.GetKey(KeyCode.Space)) {
+            CameraController.CloseMode = false;
             if(Vector3.Distance(previousSpawnLocation, transform.position) > SpawnDistanceThreshold) {
                 if(CanSpawnHere() == true) {
                     SpawnObjectsSequence();
                 }
             }
+        } else {
+            CameraController.CloseMode = true;
         }
 
         if(Input.GetKeyDown(KeyCode.F)) {
