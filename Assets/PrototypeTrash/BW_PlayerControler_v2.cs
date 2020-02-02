@@ -9,6 +9,7 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     public float turnSpeed;
     public float inAirSpeedMod = 0.2f;
     public float angularDrag = 0.5f;
+    public float MaxSpeed = 20;
     [HideInInspector]
 
     private BW_Suspension vehicleSupspension;
@@ -19,7 +20,6 @@ public class BW_PlayerControler_v2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         vehicleSupspension = GetComponentInChildren<BW_Suspension>();
-        
     }
 
     // Update is called once per frame
@@ -74,7 +74,7 @@ public class BW_PlayerControler_v2 : MonoBehaviour
             }
         }
 
-
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed);
 
     }
 }
