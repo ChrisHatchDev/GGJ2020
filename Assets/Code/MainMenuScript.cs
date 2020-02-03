@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Rewired;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -12,20 +13,26 @@ public class MainMenuScript : MonoBehaviour
     public GameObject pC;
     public bool pauseActive;
 
+    private Player player;
+
     void Awake()
     {
         pauseActive = false;
-        
+
+        if(pC) {
+            pC.SetActive(false);
+        }
+        player = ReInput.players.GetPlayer(0);
     }
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene("TechPlayground");
+        SceneManager.LoadScene(1);
     }
 
     public void OnRestartButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
 
     public void OnExitButton()
@@ -35,10 +42,13 @@ public class MainMenuScript : MonoBehaviour
 
     public void WakeUpMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (player.GetButtonDown("BackButton"))
         {
+
+            SceneManager.LoadScene(1);
             //Debug.Log("L key was pressed.");
 
+            return;
             if (pauseActive == true)
             {
                 pC.SetActive(false);
